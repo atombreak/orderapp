@@ -13,13 +13,13 @@ function App() {
 	const nameAtom = useRecoilValue(name);
 
   return (
-    <VStack pos="relative" w="100%" h="100vh"  bgColor="aliceblue">
+    <VStack pos="relative" w="100%" h="100vh">
     	<Header />
-   	{/*	<AlertForm open={onOpen} opening={isOpen} close={onClose}/> */}
+   		<AlertForm open={onOpen} opening={isOpen} close={onClose}/> 
 		<Box as="div" bg="teal.700" 
 		className=" animate-ping"   pos="fixed" bottom="7" right="7" w="30px" h="30px" borderRadius="full">
 		</Box>
-			<IconButton p={2} icon={<FaFolderPlus />} colorScheme="teal" borderRadius="full" 
+			<IconButton onClick={onOpen}  p={2} icon={<FaFolderPlus />} colorScheme="teal" borderRadius="full" 
 			pos="fixed" bottom="6"  right="6"/>
     </VStack>
   );

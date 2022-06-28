@@ -14,9 +14,11 @@ import Form from "./Form.js"
  	return(
  		<>
 			<AlertDialog
-			        isOpen={open}
+			        isOpen={opening}
 			        onClose={close}
 			        isCentered
+			        motionPreset='slideInBottom'
+			        
 			      >
 			        <AlertDialogOverlay>
 			          <AlertDialogContent>
@@ -25,17 +27,8 @@ import Form from "./Form.js"
 			            </AlertDialogHeader>
 			
 			            <AlertDialogBody>
-			              <Form />
+			              <Form closeForm={close}/>
 			            </AlertDialogBody>
-			
-			            <AlertDialogFooter>
-			              <Button onClick={close}>
-			                Cancel
-			              </Button>
-			              <Button colorScheme='red' onClick={close} ml={3}>
-			                Delete
-			              </Button>
-			            </AlertDialogFooter>
 			          </AlertDialogContent>
 			        </AlertDialogOverlay>
 			      </AlertDialog>
