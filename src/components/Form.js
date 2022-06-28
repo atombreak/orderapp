@@ -1,10 +1,16 @@
-import {VStack, Input, Button,Text, Textarea} from "@chakra-ui/react"
+import {VStack,useToast, Input, Button,Text, Textarea} from "@chakra-ui/react"
 import {Tasks} from "../store/globalStore.js"
 import {useRecoilState} from "recoil";
 import {useState} from "react"
 
 const Form = ({closeForm}) => {
 
+	const toast = useToast({
+		title:"Can't create fill in all field",
+		status: "error",
+		duration: 3000,
+		isClosable: true
+	})
 	const [titleInput, setTitleInput] = useState("")
 	const [descripInput, setDescripInput] = useState("");
 	const [tasks, setTasks]	= useRecoilState(Tasks)
@@ -13,11 +19,13 @@ const Form = ({closeForm}) => {
 	const d = new Date();
 	
 	const addTask = () => {
-
-		if(titleInput.length < 3 && descripInput.length < 5){
-			return closeForm()
-		}else{
-			
+		
+		if(titleInput.length < 0){
+			toast()
+			return closeForm();
+		}else if(descripInput.length < 5){
+			toast()
+			return closeForm();
 		}
 
 		const task = {
@@ -35,8 +43,8 @@ const Form = ({closeForm}) => {
 	}
 	return(
 		<VStack spacing="4"  maxW={{base: "100vh", sm:"80vh", md:"50vh", lg:"36vh"}} p={4} h="auto" >
-			<Input onChange={(e) => setTitleInput(e.target.value)} variant="filled" type="text" placeholder="Super Task Title" />
-			<Textarea onChange={(e) => setDescripInput(e.target.value)}  varisnt="filled"  size="md"  placeholder="Describe your SUPER task here....." />
+			<Input value={titleInput} onChange={(e) => setTitleInput(e.target.value)} variant="filled" type="text" placeholder="Super Task Title" />
+			<Textarea value={descripInput} onChange={(e) => setDescripInput(e.target.value)}  varisnt="filled"  size="md"  placeholder="Describe your SUPER task here....." />
 			<Button  onClick={addTask} alignSelf="flex-end" color="aliceblue" bgColor="teal.500" mt={4}> Create Task</Button>
 			 
 		</VStack>

@@ -1,5 +1,6 @@
-import {VStack,Box, useDisclosure, IconButton} from "@chakra-ui/react";
-import {useRecoilValue} from 'recoil';
+import {VStack,Box,Heading, useDisclosure, IconButton} from "@chakra-ui/react";
+import {useRecoilState} from 'recoil';
+import {useEffect} from "react"
 import {Tasks} from './store/globalStore.js';
 import Header from './components/Header.js';
 import List from './components/List.js';
@@ -10,13 +11,25 @@ import {FaFolderPlus} from "react-icons/fa"
 function App() {
 
 	const { isOpen, onOpen, onClose } = useDisclosure()
-	const TasksAtom = useRecoilValue(Tasks);
+	const [tasksAtom, setTasksAtom] = useRecoilState(Tasks);
+
+	let  storageLocal = localStorage.getItem("tasks")
+	const parsed = JSON.parse(storageLocal)
+	useEffect(() => {
+		setTasksAtom(parsed)
+	}, [])
+	useEffect(() => {
+		localStorage.setItem("tasks", JSON.stringify(tasksAtom))
+	}, [tasksAtom]) 
+
 
   return (
     <VStack pos="relative" w="100%" h="100vh">
     	<Header />
    		<AlertForm open={onOpen} opening={isOpen} close={onClose}/> 
-   		<List />
+	{ tasksAtom.length > 0 ?
+   		<List /> : <Heading pt={16} fontWeight="bolder" fontSize="24">Ooops no tasks yet..</Heading>
+   	}
 		<Box as="div" bg="teal.700" className=" animate-ping" pos="fixed" bottom="7" right="7" w="30px" h="30px" borderRadius="full">
 		</Box>
 			<IconButton onClick={onOpen}  p={2} icon={<FaFolderPlus />} colorScheme="teal" borderRadius="full" 

@@ -2,7 +2,7 @@ import {atom, selector} from 'recoil';
 
 
 export const Tasks = atom({
-	key: "tsks",
+	key: "tasks",
 	default: []
 })
 

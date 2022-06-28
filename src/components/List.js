@@ -26,6 +26,11 @@ const ListTodos = () => {
 		setTaskItems(newList)
 	} 
 
+	if(taskItems.length < 0){
+		alert("the")
+		return <Heading fontSize="78">Oooops there are no Tasks yet!!!!</Heading>
+	}
+
 	return(
 	<>
 		<Heading pt={7} pl={5} alignSelf="start" fontSize="32px">Your Tasks</Heading>
