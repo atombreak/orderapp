@@ -561,6 +561,14 @@ video {
   display: flex;
 }
 
+.h-\[80px\] {
+  height: 80px;
+}
+
+.w-full {
+  width: 100%;
+}
+
 @-webkit-keyframes ping {
   75%, 100% {
     -webkit-transform: scale(2);
@@ -625,4 +633,9 @@ video {
 
 .border {
   border-width: 1px;
+}
+
+.bg-green-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(22 163 74 / var(--tw-bg-opacity));
 }

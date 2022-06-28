@@ -1,10 +1,16 @@
 import {atom, selector} from 'recoil';
 
 
-export const name = atom({
-	key: "name",
-	default: "Memo creator"
+export const Tasks = atom({
+	key: "tsks",
+	default: []
 })
+
+export const DarkMode = atom({
+	key:"darkmode",
+	default: ""
+})
+
 
 
 /*
