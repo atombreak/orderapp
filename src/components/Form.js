@@ -23,12 +23,12 @@ const Form = ({closeForm}) => {
 		if(titleInput.length < 0){
 			toast()
 			return closeForm();
-		}else if(descripInput.length < 5){
+		}else if(descripInput.length < 3){
 			toast()
 			return closeForm();
 		}
 
-		const task = {
+		const todo = {
 			id: Math.floor((Math.random() * 10) * 3 + (Math.random() * 10) + 2 * (Math.random() * 10)),
 			title: titleInput,
 			body: descripInput,
@@ -37,7 +37,7 @@ const Form = ({closeForm}) => {
 			year: d.getFullYear()
 		}
 
-		setTasks([...tasks, task])
+		setTasks([...tasks, todo])
 		closeForm();
 		
 	}

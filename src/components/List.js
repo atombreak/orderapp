@@ -27,14 +27,14 @@ import {useState} from 'react';
 const ListTodos = () => {
 
 	const { isOpen, onOpen, onClose } = useDisclosure()
-	const [todo, setTodo] = useState(null)
+	const [todo, setTodo] = useState({})
 
 	const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
 	const [taskItems, setTaskItems] = useRecoilState(Tasks)
 	
 	const delTask = (item) => {
-		const newList = taskItems.filter((taskId) => taskId.id != item.id)
+		const newList = taskItems.filter((taskId) => taskId.id !== item.id)
 		setTaskItems(newList)
 		onClose();
 	} 
@@ -63,7 +63,7 @@ const ListTodos = () => {
 
 			{
 			taskItems.map((task) => (
-				<HStack  borderColor="blue.200"  border="1px"  borderRadius="lg"  justifyContent="between" p={3}  w="100%"  h="80px">
+				<HStack  borderColor="blue.200"  border="1px"  borderRadius="lg"  justifyContent="between" p={3}  w="100%" h="auto" minH="90px">
 					<VStack onClick={() => openDrawer(task)}   alignItems="flex-start">
 						<Text fontSize="17" fontWeight="bold"> {task.title}</Text>
 						<Text>{task.day}  {month[task.month]}, {task.year}</Text>
@@ -73,13 +73,13 @@ const ListTodos = () => {
 				</HStack>
 			))
 			}	
-			<Detail task={todo} delTask={delTask} opening={isOpen} closedIt={onClose}/>
+			<Detail todoItem={todo} delTasks={delTask} opening={isOpen} closedIt={onClose}/>
 		</VStack>
 	</>
 	)
 }
 
-const Detail = ({opening, closedIt,delTask,task}) => {
+const Detail = ({opening, closedIt,delTasks,todoItem}) => {
 	return(
 		<>
 			<Drawer
@@ -91,17 +91,18 @@ const Detail = ({opening, closedIt,delTask,task}) => {
 				<DrawerContent>
 					<DrawerHeader>
 						<Text>
-							{task.title}
+							{todoItem.title}
 						</Text>
 					</DrawerHeader>
+					<DrawerCloseButton onClick={() => closedIt()} />
 					<Divider />
 					<DrawerBody>
 							<Text  fontSize="16">
-		   						{task.body}
+		   						{todoItem.body}
 							</Text>
 					</DrawerBody>
 					<DrawerFooter justifyContent="center" alignItems="center">
-						<Button onClick={() => alert(task.id)} colorScheme="blue"  mr={3}>
+						<Button onClick={() => delTasks(todoItem)} colorScheme="blue"  mr={3}>
 						   Task Completed
 						</Button>
 					</DrawerFooter>

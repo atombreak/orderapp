@@ -4,6 +4,7 @@ import {useEffect} from "react"
 import {Tasks} from './store/globalStore.js';
 import Header from './components/Header.js';
 import List from './components/List.js';
+import Content from './components/NoContent.js'
 import AlertForm from './components/Alert.js';
 import {MdPostAdd} from "react-icons/md";
 import {FaFolderPlus} from "react-icons/fa"
@@ -28,11 +29,12 @@ function App() {
     	<Header />
    		<AlertForm open={onOpen} opening={isOpen} close={onClose}/> 
 	{ tasksAtom.length > 0 ?
-   		<List /> : <Heading pt={16} fontWeight="bolder" fontSize="24">Ooops no tasks yet..</Heading>
+   		<List /> : <Content />
    	}
 		<Box as="div" bg="teal.700" className=" animate-ping" pos="fixed" bottom="7" right="7" w="30px" h="30px" borderRadius="full">
 		</Box>
-			<IconButton onClick={onOpen}  p={2} icon={<FaFolderPlus />} colorScheme="teal" borderRadius="full" 
+			<IconButton onClick={onOpen}  p={2}
+			 icon={<MdPostAdd />} colorScheme="teal" borderRadius="full" 
 			pos="fixed" bottom="6"  right="6"/>
     </VStack>
   );
