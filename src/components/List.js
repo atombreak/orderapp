@@ -87,7 +87,7 @@ const Detail = ({opening, closedIt,delTasks,todoItem}) => {
 			placement="bottom"
 			
 			>
-				<DrawerOverlay />
+				<DrawerOverlay onClick={() => closedIt} />
 				<DrawerContent>
 					<DrawerHeader>
 						<Text>

@@ -1,4 +1,4 @@
-import {VStack,useToast, Input, Button,Text, Textarea} from "@chakra-ui/react"
+import {VStack,useToast, Input, Button, Textarea} from "@chakra-ui/react"
 import {Tasks} from "../store/globalStore.js"
 import {useRecoilState} from "recoil";
 import {useState} from "react"
@@ -14,7 +14,7 @@ const Form = ({closeForm}) => {
 	const [titleInput, setTitleInput] = useState("")
 	const [descripInput, setDescripInput] = useState("");
 	const [tasks, setTasks]	= useRecoilState(Tasks)
-	const [isDisabled, setIsDisabled] = useState(true)
+	
 
 	const d = new Date();
 	

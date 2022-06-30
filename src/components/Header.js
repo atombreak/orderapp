@@ -1,5 +1,3 @@
-import {name} from "../store/globalStore.js";
-import {useRecoilValue} from "recoil";
 import {useRef} from "react"
 import {Box,VStack, Text, IconButton, useColorMode} from "@chakra-ui/react";
 import {FaSun, FaMoon} from "react-icons/fa";
